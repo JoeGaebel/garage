@@ -1,34 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Garage Opener
+Dynamic IP config: 
+- https://gist.github.com/christopherbaek/333146d953c87b3667c59c4e6e250454
+- https://www.namecheap.com/support/knowledgebase/article.aspx/595/11/how-do-i-enable-dynamic-dns-for-a-domain/
+- ./ddclient.conf
 
-## Getting Started
+Daemonising:
+ - `pm2 start npm --name "nextjs" -- run dev` (only works with dev for some reason)
 
-First, run the development server:
+Level Shifting:
+ - https://www.raspberrypi-spy.co.uk/2018/09/using-a-level-shifter-with-the-raspberry-pi-gpio/
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Pins:
+ - https://pinout.xyz/
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Hardware:
+ - [5V Relay](https://www.jaycar.com.au/arduino-compatible-5v-relay-board/p/XC4419?gclid=EAIaIQobChMI9ZitiICR-gIVl38rCh16oQiSEAQYASABEgKFwPD_BwE)
+ - [Logic Level Shifter](https://www.jaycar.com.au/arduino-compatible-logic-level-converter-module/p/XC4486?pos=1&queryId=dce2c08d3daac5c042adf8eba504341f)
