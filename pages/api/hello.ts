@@ -10,7 +10,7 @@ function sleep(ms: number) {
 }
 
 const switchSignal = new Gpio(17, 'out');
-await switchSignal.write(0);
+switchSignal.writeSync(0);
 
 export default async function handler(
   req: NextApiRequest,
