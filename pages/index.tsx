@@ -1,15 +1,21 @@
-import type {NextPage} from 'next'
-import {useState} from "react";
+import withSession from "../lib/withSession";
+import React, {useState} from "react";
 import linky from './linky.png'
 import Image from 'next/image'
 
-const Home: NextPage = () => {
+export default function Home() {
     const [disabled, setDisabled] = useState(false)
 
-    function onClick() {
+    async function onClick() {
         setTimeout(() => setDisabled(false), 2000)
-        fetch('/api/hello').then()
-        setDisabled(true)
+        const response = await fetch('/api/garage')
+
+        if (response.ok) {
+            setDisabled(true)
+        } else {
+            const json = await response.json();
+            alert(json.error)
+        }
     }
 
     return (
@@ -25,9 +31,20 @@ const Home: NextPage = () => {
                 onClick={onClick}
                 disabled={disabled}
             >{disabled ? 'Opening...' : 'OPEN!'}</button>
-            {disabled && <Image src={linky}/>}
+            {disabled && <Image alt="linky" src={linky}/>}
         </div>
     )
 }
 
-export default Home
+export const getServerSideProps = withSession(async function ({req, res}) {
+    const password = req.session.get("password");
+
+    if (password === undefined) {
+        res.setHeader("location", "/login");
+        res.statusCode = 302;
+        res.end();
+        return {props: {}};
+    }
+
+    return {props: {}};
+});

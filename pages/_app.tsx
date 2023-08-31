@@ -1,14 +1,19 @@
-import type { AppProps } from 'next/app'
-import Head from "next/head";
+import '../styles/globals.css'
+import { SWRConfig } from "swr";
+import fetch from "../lib/fetchJson";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <>
-    <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
-      <title>GARAGEY MCGARAGEFACE</title>
-    </Head>
+// @ts-ignore
+function MyApp({ Component, pageProps }) {
+  return <SWRConfig
+    value={{
+      fetcher: fetch,
+      onError: (err) => {
+        console.error(err);
+      },
+    }}
+  >
     <Component {...pageProps} />
-  </>
+  </SWRConfig>;
 }
 
 export default MyApp

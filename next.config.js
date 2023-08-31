@@ -8,5 +8,6 @@ const nextConfig = {
 module.exports = () => {
     const switchSignal = new Gpio(17, 'out');
     switchSignal.writeSync(0);
+
     return nextConfig
 }

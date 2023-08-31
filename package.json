@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@types/onoff": "^4.1.0",
+    "axios": "^1.5.0",
+    "bcrypt-ts": "^4.0.0",
     "next": "12.3.0",
+    "next-iron-session": "^4.2.0",
     "onoff": "^6.0.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "swr": "^2.2.2"
   },
   "devDependencies": {
     "@types/node": "18.7.16",
