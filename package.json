@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "serve": "pm2 start npm --name \"nextjs\" -- run dev"
+    "lint": "next lint"
   },
   "dependencies": {
     "@types/onoff": "^4.1.0",

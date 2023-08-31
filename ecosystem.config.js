@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name   : "garage",
-    script : "npm run serve",
+    script : "npm run dev",
     env: {
       "PASSWORD": "passwordgoeshere",
       "SECRET": "secretgoeshere"
