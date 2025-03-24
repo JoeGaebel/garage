@@ -1,12 +1,13 @@
-import withSession from "../../lib/withSession";
+import {getSessionPassword} from "../../lib/session";
+import {NextApiRequest, NextApiResponse} from "next";
 
-async function handler(req: any, res: any) {
-    const password = req.session.get("password");
+async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const password = await getSessionPassword(req, res)
 
     if (password) {
         res.json({
             isLoggedIn: true,
-            ...password,
+            password: password,
         });
     } else {
         res.json({
@@ -15,4 +16,4 @@ async function handler(req: any, res: any) {
     }
 }
 
-export default withSession(handler);
+export default handler;

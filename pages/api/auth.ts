@@ -1,10 +1,11 @@
 import * as bcrypt from "bcrypt-ts";
-import withSession from "../../lib/withSession";
+import {saveSession} from "../../lib/session";
+import {NextApiRequest, NextApiResponse} from "next";
 
 export const ERROR_CREDENTIALS = "Invalid password";
 // @ts-ignore
-async function handler(req, res) {
-    const method = req.method.toLowerCase();
+async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const method = req.method!.toLowerCase();
     const { password } = req.body;
 
     if (method !== "post") {
@@ -12,10 +13,10 @@ async function handler(req, res) {
     }
 
     try {
-        const isSessionValid = await validateSession(password);
+        const isPasswordValid = await validatePassword(password);
 
-        if (isSessionValid) {
-            await saveSession(password, req);
+        if (isPasswordValid) {
+            await saveSession(password, req, res);
             res.status(200).json({password});
             return;
         }
@@ -26,14 +27,9 @@ async function handler(req, res) {
     res.status(403).json({error: ERROR_CREDENTIALS});
 }
 
-export default withSession(handler);
+export default handler;
 
-async function saveSession(password: string, request: any): Promise<void> {
-    request.session.set("password", password);
-    await request.session.save();
-}
-
-async function validateSession(password: string): Promise<boolean> {
+async function validatePassword(password: string): Promise<boolean> {
     const expectedHash = await bcrypt.hash(process.env.PASSWORD!, 1);
     return await bcrypt.compare(password, expectedHash);
 }

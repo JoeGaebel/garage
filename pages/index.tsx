@@ -1,7 +1,9 @@
-import withSession from "../lib/withSession";
+import {getSessionPassword} from "../lib/session";
 import React, {useState} from "react";
+// @ts-ignore
 import linky from './linky.png'
 import Image from 'next/image'
+import {NextApiRequest, NextApiResponse} from "next";
 
 export default function Home() {
     const [disabled, setDisabled] = useState(false)
@@ -36,8 +38,8 @@ export default function Home() {
     )
 }
 
-export const getServerSideProps = withSession(async function ({req, res}) {
-    const password = req.session.get("password");
+export const getServerSideProps = async function ({req, res}: {req: NextApiRequest, res: NextApiResponse}) {
+    const password = await getSessionPassword(req, res);
 
     if (password === undefined) {
         res.setHeader("location", "/login");
@@ -47,4 +49,4 @@ export const getServerSideProps = withSession(async function ({req, res}) {
     }
 
     return {props: {}};
-});
+};
