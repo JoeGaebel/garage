@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name   : "garage",
-    script : "npm run start",
+    script : "yarn start",
     interpreter : 'node@22.14.0',
     env: {
       "PASSWORD": "passwordgoeshere",
