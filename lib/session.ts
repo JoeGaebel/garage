@@ -9,7 +9,7 @@ const sessionOptions: SessionOptions = {
     password: process.env.SECRET!,
     cookieName: 'linkygarage',
     cookieOptions: {
-        secure: process.env.NODE_ENV === 'production',
+        secure: false,
         maxAge: 2147483647, // Approximately 68 years
     },
 };
